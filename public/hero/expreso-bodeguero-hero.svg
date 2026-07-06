@@ -1,0 +1,24 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#000000"/>
+  <rect width="1600" height="900" fill="url(#paint0_linear_1_2)" fill-opacity="0.6"/>
+  <circle cx="1280" cy="170" r="170" fill="#395BA7" fill-opacity="0.36"/>
+  <circle cx="300" cy="150" r="210" fill="#4C73CA" fill-opacity="0.26"/>
+  <circle cx="1250" cy="720" r="240" fill="#1E293B" fill-opacity="0.5"/>
+  <rect x="975" y="120" width="220" height="560" rx="100" fill="url(#paint1_linear_1_2)"/>
+  <rect x="1045" y="320" width="300" height="170" rx="36" fill="#FFFFFF" fill-opacity="0.9"/>
+  <text x="1195" y="375" fill="#395BA7" font-family="Arial" font-size="28" font-weight="700" text-anchor="middle">EXPRESO</text>
+  <text x="1195" y="420" fill="#0A0A0A" font-family="Arial" font-size="50" font-weight="700" text-anchor="middle">BODEGUERO</text>
+  <text x="1195" y="455" fill="#395BA7" font-family="Arial" font-size="22" font-weight="700" text-anchor="middle">Hero Placeholder</text>
+  <defs>
+    <linearGradient id="paint0_linear_1_2" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#050505"/>
+      <stop offset="0.48" stop-color="#0B101F"/>
+      <stop offset="1" stop-color="#13213F"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear_1_2" x1="975" y1="120" x2="1195" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111111"/>
+      <stop offset="0.48" stop-color="#2A2A2A"/>
+      <stop offset="1" stop-color="#070707"/>
+    </linearGradient>
+  </defs>
+</svg>

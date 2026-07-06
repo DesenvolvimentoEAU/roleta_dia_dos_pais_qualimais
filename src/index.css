@@ -1,0 +1,376 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #000000;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.form-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(57, 91, 167, 0.14);
+  background: #ffffff;
+  padding: 0.9rem 1rem;
+  color: #0a0a0a;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.form-input::placeholder {
+  color: rgba(10, 10, 10, 0.38);
+}
+
+.form-input:focus {
+  border-color: rgba(57, 91, 167, 0.5);
+  box-shadow: 0 0 0 4px rgba(57, 91, 167, 0.12);
+  background: #ffffff;
+}
+
+.form-file {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px dashed rgba(57, 91, 167, 0.28);
+  background: #ffffff;
+  padding: 1rem;
+  color: #0a0a0a;
+}
+
+.carousel-mask {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  padding-inline: 1.25rem;
+  animation: carouselLeft 38s linear infinite;
+}
+
+@keyframes carouselLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+.roulette-modal-card {
+  position: relative;
+  max-height: 94dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 1.6rem;
+  background: #020202;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.roulette-modal-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(57, 91, 167, 0.3), transparent 34%),
+    radial-gradient(circle at 12% 88%, rgba(76, 115, 202, 0.22), transparent 28%),
+    linear-gradient(135deg, #020202 0%, #060a13 48%, #000000 100%);
+}
+
+.roulette-panel {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
+    radial-gradient(circle at center, rgba(57, 91, 167, 0.2), transparent 52%);
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.roulette-stage {
+  position: relative;
+  display: grid;
+  width: min(100%, 570px);
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  isolation: isolate;
+  overflow: visible;
+}
+
+.roulette-stage::before {
+  content: "";
+  position: absolute;
+  inset: -0.65rem;
+  z-index: 0;
+  border-radius: 50%;
+  background:
+    conic-gradient(from 180deg, rgba(57, 91, 167, 0.15), rgba(255, 255, 255, 0.32), rgba(57, 91, 167, 0.12), rgba(255, 255, 255, 0.2), rgba(57, 91, 167, 0.15));
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 28px 70px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(57, 91, 167, 0.18);
+}
+
+.roulette-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0.2rem;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.12),
+    inset 0 0 35px rgba(255, 255, 255, 0.08);
+}
+
+.roulette-glow {
+  position: absolute;
+  inset: 8%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(137, 166, 234, 0.2), transparent 58%);
+  filter: blur(8px);
+}
+
+.roulette-pointer {
+    position: absolute;
+    top: 11.05rem;
+    left: 100%;
+    z-index: 20;
+    width: 0;
+    height: 0;
+    transform: translateX(-117%);
+    border-left: clamp(0.95rem, 3vw, 1.35rem) solid transparent;
+    border-right: clamp(0.95rem, 3vw, 1.35rem) solid transparent;
+    border-bottom: clamp(1.85rem, 4vw, 2.6rem) solid #fbff00;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.5));
+}
+
+.roulette-modern {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  width: 100%;
+  place-items: center;
+  transform-origin: center;
+}
+
+.roulette-modern > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  filter: drop-shadow(0 28px 45px rgba(0, 0, 0, 0.58));
+}
+
+.roulette-modern canvas,
+.roulette-modern svg {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+}
+
+.roulette-center-badge {
+  position: absolute;
+  z-index: 15;
+  display: grid;
+  width: clamp(5.2rem, 18%, 7rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.22), transparent 30%),
+    linear-gradient(135deg, #050505 0%, #14254a 54%, #395ba7 100%);
+  color: #ffffff;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 14px 35px rgba(0, 0, 0, 0.45);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.roulette-center-badge span {
+  font-size: clamp(0.55rem, 1.5vw, 0.72rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.roulette-center-badge strong {
+  margin-block: -0.35rem;
+  font-size: clamp(1.2rem, 3vw, 1.75rem);
+  font-weight: 900;
+}
+
+.roulette-info-card {
+  min-width: 0;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  padding: clamp(1.15rem, 3vw, 1.5rem);
+  text-align: left;
+  backdrop-filter: blur(18px);
+}
+
+.roulette-prize-list {
+  display: grid;
+  max-height: min(43dvh, 355px);
+  gap: 0.7rem;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+}
+
+.roulette-prize-item {
+  display: grid;
+  grid-template-columns: 2.65rem 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  border-radius: 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.32);
+  padding: 0.7rem;
+}
+
+.roulette-prize-item > span {
+  display: grid;
+  width: 2.4rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 0.9rem;
+  background: #395ba7;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.roulette-prize-item strong {
+  display: -webkit-box;
+  overflow: hidden;
+  color: #ffffff;
+  font-size: 0.87rem;
+  font-weight: 900;
+  line-height: 1.25;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.roulette-prize-item small {
+  display: block;
+  margin-top: 0.2rem;
+  color: rgba(187, 208, 255, 0.78);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.linkMinhasRedes {
+  color: var(--titulo-principal);
+  font-family: "VT323", monospace;
+  font-weight: 600;
+  font-style: normal;
+  text-decoration: none;
+  text-align: center;
+}
+
+.linkMinhasRedes:hover {
+  font-size: 1.1rem;
+  color: var(--tertiary);
+  text-decoration: underline;
+  text-align: center;
+}
+
+.linkMinhasRedes,
+.tituloRodape {
+  text-align: center;
+}
+
+@keyframes resultIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-resultIn {
+  animation: resultIn 0.55s ease both;
+}
+
+@media (max-width: 1279px) {
+  .roulette-info-card {
+    text-align: center;
+  }
+
+  .roulette-prize-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-track {
+    animation-duration: 28s;
+  }
+
+  .roulette-modal-card {
+    padding: 1rem;
+  }
+
+  .roulette-panel {
+    border-radius: 1.5rem;
+    padding: 1rem;
+  }
+
+  .roulette-prize-list {
+    grid-template-columns: 1fr;
+    max-height: 240px;
+  }
+}
+
+@media (max-width: 440px) {
+  .roulette-modal-card {
+    border-radius: 1.35rem;
+  }
+
+  .roulette-panel {
+    padding: 0.75rem;
+  }
+
+  .roulette-stage {
+    width: min(100%, 305px);
+  }
+
+  .roulette-prize-item {
+    grid-template-columns: 2.35rem 1fr;
+  }
+
+  .roulette-prize-item > span {
+    width: 2.15rem;
+  }
+}
