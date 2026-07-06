@@ -39,7 +39,7 @@ export default function ProductCarousel() {
             Produtos em destaque
           </span>
           <h2 className="mt-2 text-3xl font-black tracking-[-0.04em] text-[#FFFFFF] sm:text-4xl">
-            Produtos que podem sair na roleta.
+            Prêmios da roleta.
           </h2>
         </div>
       </div>

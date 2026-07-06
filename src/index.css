@@ -286,17 +286,20 @@ input {
 }
 
 .linkMinhasRedes {
-  color: var(--titulo-principal);
-  font-family: "VT323", monospace;
-  font-weight: 600;
-  font-style: normal;
-  text-decoration: none;
-  text-align: center;
+      color: var(--titulo-principal);
+    font-family: "VT323", monospace;
+    font-weight: 600;
+    font-style: normal;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 27px;
 }
 
 .linkMinhasRedes:hover {
   font-size: 1.1rem;
-  color: var(--tertiary);
+  color: #395ba7;
   text-decoration: underline;
   text-align: center;
 }

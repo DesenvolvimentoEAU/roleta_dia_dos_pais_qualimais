@@ -19,7 +19,7 @@ export default function LgpdModal({ open, onClose }) {
           </p>
 
           <p>
-            Os dados coletados incluem nome, telefone, e-mail, endereço e comprovante da compra. A participação depende do aceite desta condição.
+            Os dados coletados incluem nome, CPF, telefone, e-mail, endereço e comprovante da compra. A participação depende do aceite desta condição.
           </p>
 
           <p>

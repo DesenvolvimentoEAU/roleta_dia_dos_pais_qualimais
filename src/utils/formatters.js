@@ -19,8 +19,21 @@ export function formatCep(value) {
     .replace(/^(\d{5})(\d)/, "$1-$2");
 }
 
+export function formatCpf(value) {
+  const numbers = String(value || "").replace(/\D/g, "").slice(0, 11);
+
+  return numbers
+    .replace(/^(\d{3})(\d)/, "$1.$2")
+    .replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3")
+    .replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d{1,2})$/, "$1.$2.$3-$4");
+}
+
 export function validateCampaignForm(form) {
+  const cpfNumbers = String(form.cpf || "").replace(/\D/g, "");
+
   if (!form.nome.trim()) return "Informe seu nome.";
+  if (!cpfNumbers) return "Informe seu CPF.";
+  if (cpfNumbers.length !== 11) return "Informe um CPF válido com 11 dígitos.";
   if (!form.telefone.trim()) return "Informe seu telefone.";
   if (!form.email.trim()) return "Informe seu e-mail.";
   if (!form.cep.trim()) return "Informe seu CEP.";

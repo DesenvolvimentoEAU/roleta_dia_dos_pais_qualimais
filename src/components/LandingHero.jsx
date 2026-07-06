@@ -13,18 +13,24 @@ export default function LandingHero({ onOpenForm, onOpenLgpd }) {
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.78)_38%,rgba(0,0,0,0.55)_100%)]" />
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(57,91,167,0.28),transparent_26%),radial-gradient(circle_at_78%_18%,rgba(76,115,202,0.22),transparent_20%)]" />
 
-      <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10">
+      <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-12 px-5 py-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10">
         <div>
+          <img
+            src="/hero/logoExpreso.webp"
+            alt="Importadora Qualimais"
+            className="mb-7 h-auto w-[180px] max-w-full sm:w-[220px] lg:w-[260px]"
+          />
+
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#FFFFFF]/10 bg-[#FFFFFF]/6 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#FFFFFF] backdrop-blur-xl">
             <span className="h-2 w-2 rounded-full bg-[#395BA7]" />
             Campanha especial Dia dos Pais
           </div>
 
-          <h1 className="max-w-4xl text-5xl font-black leading-[0.95] tracking-[-0.06em] text-[#FFFFFF] sm:text-6xl lg:text-8xl">
+          <h1 className="max-w-4xl text-3xl font-black leading-[0.95] tracking-[-0.06em] text-[#FFFFFF] sm:text-5xl lg:text-7xl">
             Uma roleta de brindes para brindar grandes pais.
           </h1>
 
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-[#FFFFFF]/78 sm:text-xl">
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-[#FFFFFF]/78 sm:text-l">
             Participe da campanha, gire a roleta e descubra seu presente especial. Uma experiência criada para aproximar nossos clientes do universo Importadora Qualimais.
           </p>
 
@@ -37,7 +43,7 @@ export default function LandingHero({ onOpenForm, onOpenLgpd }) {
 
           <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3">
             {[
-              ["10", "prêmios teste"],
+              ["10", "prêmios disponíveis na roleta"],
               ["1x", "giro por pessoa"],
               ["100%", "cadastro seguro"]
             ].map(([value, label]) => (

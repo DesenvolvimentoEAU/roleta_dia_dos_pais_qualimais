@@ -3,7 +3,7 @@ export default function HowItWorks({ onOpenForm }) {
     {
       number: "01",
       title: "Preencha seus dados",
-      text: "Nome, telefone, e-mail e endereço para validar sua participação. Aceite os termos e condições e a política de privacidade."
+      text: "Nome, CPF, telefone, e-mail e endereço para validar sua participação. Aceite os termos e condições e a política de privacidade."
     },
     {
       number: "02",
@@ -18,7 +18,7 @@ export default function HowItWorks({ onOpenForm }) {
     {
       number: "04",
       title: "Aguarde a conferência",
-      text: "A equipe validará os dados e o comprovante antes de confirmar o envio do prêmio. E enviaremos mensagem por e-mail ou WhatsApp para informar o status do seu prêmio."
+      text: "A equipe validará os dados e o comprovante antes de confirmar o envio do prêmio. E enviaremos mensagem por e-mail ou WhatsApp para informar o status."
     }
   ];
 

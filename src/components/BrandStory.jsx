@@ -7,7 +7,7 @@ export default function BrandStory() {
             Expreso Bodeguero
           </span>
           <h2 className="mt-4 text-4xl font-black tracking-[-0.04em] text-[#FFFFFF] sm:text-5xl">
-            Uma campanha voltado para presentear.
+            Uma campanha voltada para presentear.
           </h2>
         </div>
 

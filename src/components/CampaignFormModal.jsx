@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { getCepData } from "../api/campaignApi";
-import { formatCep, formatPhone, validateCampaignForm } from "../utils/formatters";
+import { formatCep, formatCpf, formatPhone, validateCampaignForm } from "../utils/formatters";
 import Button from "./Button";
 import Modal from "./Modal";
 
 const initialForm = {
   nome: "",
+  cpf: "",
   telefone: "",
   email: "",
   cep: "",
@@ -76,6 +77,7 @@ export default function CampaignFormModal({
 
     const formData = new FormData();
     formData.append("nome", form.nome);
+    formData.append("cpf", form.cpf.replace(/\D/g, ""));
     formData.append("telefone", form.telefone);
     formData.append("email", form.email);
     formData.append("cep", form.cep);
@@ -103,8 +105,8 @@ export default function CampaignFormModal({
 
   return (
     <Modal open={open} onClose={onClose} size="lg">
-      <div className="grid overflow-hidden rounded-[2rem] lg:grid-cols-[0.78fr_1.22fr]">
-        <div className="relative hidden min-h-full bg-[linear-gradient(135deg,#050505_0%,#0F172A_55%,#395BA7_100%)] p-8 lg:block">
+      <div className="grid max-h-[calc(100vh-2rem)] overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] lg:grid-cols-[0.78fr_1.22fr]">
+        <div className="relative hidden min-h-full max-h-[calc(100vh-2rem)] bg-[linear-gradient(135deg,#050505_0%,#0F172A_55%,#395BA7_100%)] p-8 lg:block">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.16),transparent_24%),radial-gradient(circle_at_80%_90%,rgba(0,0,0,0.25),transparent_30%)]" />
 
           <div className="relative z-10 flex h-full flex-col justify-between">
@@ -120,6 +122,9 @@ export default function CampaignFormModal({
               <p className="mt-5 leading-7 text-[#FFFFFF]/78">
                 Preencha seus dados, envie o comprovante da compra e libere a roleta. Todas as informações serão validadas antes do envio dos prêmios.
               </p>
+              <p className="mt-5 leading-7 text-[#FFFFFF]/78">
+                <strong>Promoção válida para restaurantes participantes na compra de 1 garrafa Expresso Bodeguero, do dia 01/08/2026 a 09/08/2026. Participação somente para maiores de 18 anos, válido 1 por cpf. Se beber, não dirija.</strong>
+              </p>
             </div>
 
             <div className="rounded-[2rem] border border-[#FFFFFF]/12 bg-[#FFFFFF]/8 p-5 backdrop-blur-xl">
@@ -131,7 +136,7 @@ export default function CampaignFormModal({
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-[#F7F9FF] p-6 text-[#0A0A0A] sm:p-8">
+        <form onSubmit={handleSubmit} className="modal-form-scroll max-h-[calc(100vh-2rem)] overflow-y-auto bg-[#F7F9FF] p-5 text-[#0A0A0A] sm:p-8">
           <div className="pr-10">
             <span className="text-xs font-black uppercase tracking-[0.2em] text-[#395BA7]">
               Participação
@@ -139,6 +144,9 @@ export default function CampaignFormModal({
             <h2 className="mt-2 text-3xl font-black tracking-[-0.04em]">
               Preencha seus dados
             </h2>
+            <p className="mt-3 text-sm leading-7 text-[#334155]">
+              Seus dados e o comprovante da compra serão analisados pela equipe antes da confirmação do prêmio.
+            </p>
             <p className="mt-3 text-sm leading-7 text-[#334155]">
               Seus dados e o comprovante da compra serão analisados pela equipe antes da confirmação do prêmio.
             </p>
@@ -152,6 +160,17 @@ export default function CampaignFormModal({
                 onChange={(event) => updateField("nome", event.target.value)}
                 className="form-input"
                 placeholder="Seu nome completo"
+              />
+            </div>
+
+            <div className="grid gap-2">
+              <label className="text-sm font-black">CPF</label>
+              <input
+                value={form.cpf}
+                onChange={(event) => updateField("cpf", formatCpf(event.target.value))}
+                className="form-input"
+                placeholder="000.000.000-00"
+                inputMode="numeric"
               />
             </div>
 
