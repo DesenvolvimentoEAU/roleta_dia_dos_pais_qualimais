@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(57,91,167,0.16),transparent_28%),radial-gradient(circle_at_90%_80%,rgba(57,91,167,0.10),transparent_25%)]" />
       <div className="validadePromocao">
           <p className="textoPromocao">
-               <strong><u>Promoção válida para restaurantes participantes</u></strong> na compra de 1 garrafa Expresso Bodeguero, do dia <strong><u>01/08/2026 a 09/08/2026.</u></strong> <br></br>Participação somente para maiores de 18 anos, válido 1 por cpf. <br></br>Se beber, não dirija.
+               <strong><u>Promoção válida para restaurantes participantes</u></strong> na compra de 1 garrafa Expreso Bodeguero, do dia <strong><u>01/08/2026 a 09/08/2026.</u></strong> <br></br>Participação somente para maiores de 18 anos, válido 1 por cpf. <br></br>Se beber, não dirija.
           </p>
         </div>
       <div className="relative mx-auto max-w-7xl border-t border-[#FFFFFF]/10 pt-10">
