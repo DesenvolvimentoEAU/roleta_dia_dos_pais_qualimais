@@ -5,12 +5,12 @@ export default function LandingHero({ onOpenForm, onOpenLgpd }) {
     <section className="relative isolate min-h-screen overflow-hidden bg-[#000000]">
       <div className="absolute inset-0 -z-20 bg-[#000000]" />
       <div
-        className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 -z-10 bg-cover bg-[position:68%_center] bg-no-repeat sm:bg-center"
         style={{
           backgroundImage: "url('/hero/hero-dia-dos-pais.webp')"
         }}
       />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.78)_38%,rgba(0,0,0,0.55)_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.80)_0%,rgba(0,0,0,0.78)_38%,rgba(0,0,0,0.16)_100%)]" />
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(57,91,167,0.28),transparent_26%),radial-gradient(circle_at_78%_18%,rgba(76,115,202,0.22),transparent_20%)]" />
 
       <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-12 px-5 py-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-10">
@@ -27,7 +27,7 @@ export default function LandingHero({ onOpenForm, onOpenLgpd }) {
           </div>
 
           <h1 className="max-w-4xl text-3xl font-black leading-[0.95] tracking-[-0.06em] text-[#FFFFFF] sm:text-5xl lg:text-7xl">
-            Uma roleta de brindes para brindar grandes pais.
+            Uma roleta de brindes para celebrar grandes pais!
           </h1>
 
           <p className="mt-7 max-w-2xl text-lg leading-8 text-[#FFFFFF]/78 sm:text-l">

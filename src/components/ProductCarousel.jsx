@@ -1,8 +1,65 @@
-const products = Array.from({ length: 10 }, (_, index) => ({
-  id: index + 1,
-  src: `/products/product-${String(index + 1).padStart(2, "0")}.webp`,
-  alt: `Produto prêmio ${index + 1}`
-}));
+const products = [
+  {
+    id: 1,
+    name: "Espumante Charmat",
+    src: "/products/product-01.webp",
+    alt: "Espumante Charmat"
+  },
+  {
+    id: 2,
+    name: "Torrontes",
+    src: "/products/product-02.webp",
+    alt: "Torrontes"
+  },
+  {
+    id: 3,
+    name: "Chardonnay",
+    src: "/products/product-03.webp",
+    alt: "Chardonnay"
+  },
+  {
+    id: 4,
+    name: "Bonarda",
+    src: "/products/product-04.webp",
+    alt: "Bonarda"
+  },
+  {
+    id: 5,
+    name: "Malbec Rosé",
+    src: "/products/product-05.webp",
+    alt: "Malbec Rosé"
+  },
+  {
+    id: 6,
+    name: "Reserva Cabernet Franc",
+    src: "/products/product-06.webp",
+    alt: "Reserva Cabernet Franc"
+  },
+  {
+    id: 7,
+    name: "Gran Reserva Blend",
+    src: "/products/product-07.webp",
+    alt: "Gran Reserva Blend"
+  },
+  {
+    id: 8,
+    name: "Naranjo",
+    src: "/products/product-08.webp",
+    alt: "Naranjo"
+  },
+  {
+    id: 9,
+    name: "Cabernet Sauvignon",
+    src: "/products/product-09.webp",
+    alt: "Cabernet Sauvignon"
+  },
+  {
+    id: 10,
+    name: "Malbec",
+    src: "/products/product-10.webp",
+    alt: "Malbec"
+  }
+];
 
 function CarouselTrack() {
   return (
@@ -10,18 +67,19 @@ function CarouselTrack() {
       {[...products, ...products].map((product, index) => (
         <div
           key={`${product.id}-${index}`}
-          className="min-w-[220px] max-w-[220px] rounded-[1.8rem] border border-[#FFFFFF]/10 bg-[#0A0A0A] p-4 shadow-[0_18px_40px_rgba(0,0,0,0.3)]"
+          className=" text-center min-w-[220px] max-w-[220px] rounded-[1.8rem] border border-[#FFFFFF]/10 bg-[#0A0A0A] p-4 shadow-[0_18px_40px_rgba(0,0,0,0.3)]"
         >
           <div className="overflow-hidden rounded-[1.4rem] border border-[#395BA7]/20 bg-[#050505]">
             <img
               src={product.src}
               alt={product.alt}
-              className="h-[260px] w-full object-cover"
+              className="h-[260px] w-full object-contain"
             />
           </div>
-          <div className="mt-4 flex items-center justify-between">
-            <strong className="text-sm font-black uppercase tracking-[0.14em] text-[#FFFFFF]">
-              Prêmio {product.id}
+
+          <div className="mt-4 flex items-center justify-center">
+            <strong className="text-sm font-black uppercase tracking-[0.14em] text-[#FFFFFF] text-center">
+              {product.name}
             </strong>
           </div>
         </div>
@@ -43,6 +101,7 @@ export default function ProductCarousel() {
           </h2>
         </div>
       </div>
+
       <div className="carousel-mask">
         <CarouselTrack />
       </div>

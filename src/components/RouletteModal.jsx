@@ -12,6 +12,16 @@ function getPrizeName(prize, index) {
   return prize?.nome || `Prêmio ${getPrizeLabel(index)}`;
 }
 
+function getPrizeImageSrc(prize, index) {
+  if (prize?.imagem_url) return prize.imagem_url;
+  if (prize?.imagem) return prize.imagem;
+  if (prize?.image) return prize.image;
+  if (prize?.src) return prize.src;
+
+  const safeIndex = index >= 0 ? index : Math.max(Number(prize?.id || 1) - 1, 0);
+  return `/products/product-${getPrizeLabel(safeIndex)}.webp`;
+}
+
 export default function RouletteModal({
   open,
   onClose,
@@ -32,7 +42,28 @@ export default function RouletteModal({
     }));
   }, [prizes]);
 
-  const spinDisabled = loadingSpin || mustSpin || pendingPrize || revealedPrize || wheelData.length === 0;
+  const selectedPrize = revealedPrize || pendingPrize;
+
+  const selectedPrizeIndex = useMemo(() => {
+    if (!selectedPrize) return -1;
+    return prizes.findIndex((item) => item.id === selectedPrize.id);
+  }, [prizes, selectedPrize]);
+
+  const revealedPrizeIndex = useMemo(() => {
+    if (!revealedPrize) return -1;
+    return prizes.findIndex((item) => item.id === revealedPrize.id);
+  }, [prizes, revealedPrize]);
+
+  const revealedPrizeImage = revealedPrize
+    ? getPrizeImageSrc(revealedPrize, revealedPrizeIndex)
+    : "";
+
+  const spinDisabled =
+    loadingSpin ||
+    mustSpin ||
+    pendingPrize ||
+    revealedPrize ||
+    wheelData.length === 0;
 
   async function handleSpin() {
     if (!participant?.id || spinDisabled) return;
@@ -67,16 +98,25 @@ export default function RouletteModal({
 
         <div className="relative z-10">
           <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+            <div className="logoERoleta" >
             <span className="inline-flex rounded-full border border-[#395BA7]/35 bg-[#395BA7]/14 px-4 py-2 text-[0.68rem] font-black uppercase tracking-[0.18em] text-[#BBD0FF]">
               Roleta Qualimais
             </span>
+            <img
+            src="/hero/logoExpreso.webp"
+            alt="Importadora Qualimais"
+            className="mb-7 h-auto w-[180px] max-w-full sm:w-[220px] lg:w-[260px]"
+          />
+          </div>
 
-            <h2 className="mt-5 max-w-3xl text-2xl font-black leading-tight tracking-[-0.04em] text-[#FFFFFF] sm:text-4xl lg:text-5xl">
-              {participant?.nome ? `${participant.nome}, gire para revelar seu prêmio.` : "Gire para revelar seu prêmio."}
+            <h2 className="textoGire">
+              {participant?.nome
+                ? `${participant.nome}, gire para revelar seu prêmio.`
+                : "Gire para revelar seu prêmio."}
             </h2>
           </div>
 
-          <div className="mt-7 grid gap-6 xl:grid-cols-[minmax(0,1fr)_390px] xl:items-stretch">
+          <div className="mt-7 grid gap-6 xl:grid-cols-[minmax(0,1fr)_410px] xl:items-stretch">
             <section className="roulette-panel">
               <div className="roulette-stage">
                 <div className="roulette-pointer" />
@@ -131,40 +171,33 @@ export default function RouletteModal({
               </div>
             </section>
 
-            <aside className="roulette-info-card">
+            <aside className="roulette-result-card">
               {!pendingPrize && !revealedPrize && (
-                <div className="flex h-full flex-col">
+                <div className="flex h-full flex-col justify-between gap-6">
                   <div>
                     <span className="text-[0.68rem] font-black uppercase tracking-[0.2em] text-[#89A6EA]">
-                      Prêmios disponíveis
+                      Hora de girar
                     </span>
-                    <h3 className="mt-3 text-2xl font-black tracking-[-0.03em] text-[#FFFFFF]">
-                      Confira a probabilidade de cada prêmio e gire a roleta para tentar a sorte.
-                    </h3>
-                  </div>
 
-                  <div className="roulette-prize-list mt-5">
-                    {prizes.map((prize, index) => (
-                      <div key={prize.id || index} className="roulette-prize-item">
-                        <span>{getPrizeLabel(index)}</span>
-                        <div>
-                          <strong>{getPrizeName(prize, index)}</strong>
-                          <small>{Number(prize.probabilidade || 0).toFixed(0)}% de chance</small>
-                        </div>
-                      </div>
-                    ))}
+                    <h3 className="mt-3 text-2xl font-black tracking-[-0.03em] text-[#FFFFFF]">
+                      Clique no botão central da roleta ou no botão abaixo para descobrir seu prêmio.
+                    </h3>
+
+                    <p className="mt-4 text-sm leading-7 text-[#FFFFFF]/62">
+                      O resultado será exibido com o número sorteado, o nome do prêmio e a imagem do produto.
+                    </p>
                   </div>
 
                   {message && (
-                    <div className="mt-5 rounded-2xl border border-[#395BA7]/25 bg-[#395BA7]/10 px-4 py-3 text-sm font-bold text-[#BBD0FF]">
+                    <div className="rounded-2xl border border-[#395BA7]/25 bg-[#395BA7]/10 px-4 py-3 text-sm font-bold text-[#BBD0FF]">
                       {message}
                     </div>
                   )}
 
                   <Button
                     onClick={handleSpin}
-                    disabled={loadingSpin || mustSpin || wheelData.length === 0 || pendingPrize || revealedPrize}
-                    className="mt-6 w-full"
+                    disabled={spinDisabled}
+                    className="w-full"
                   >
                     {loadingSpin ? "Preparando..." : "Girar agora"}
                   </Button>
@@ -172,18 +205,17 @@ export default function RouletteModal({
               )}
 
               {pendingPrize && !revealedPrize && (
-                <div className="flex h-full flex-col items-center justify-center text-center">
-                  <span className="inline-flex h-16 w-16 items-center justify-center rounded-full border border-[#395BA7]/35 bg-[#395BA7]/14 text-2xl font-black text-[#BBD0FF]">
-                    ...
-                  </span>
+                <div className="roulette-action-state">
+                  <span className="roulette-loading-orb">...</span>
 
                   <h3 className="mt-5 text-2xl font-black tracking-[-0.03em] text-[#FFFFFF]">
                     Roleta em movimento
                   </h3>
 
                   <p className="mt-3 max-w-xs text-sm leading-7 text-[#FFFFFF]/62">
-                    Aguarde a roleta terminar para revelar seu prêmio.
+                    Aguarde a roleta parar para revelar o prêmio sorteado.
                   </p>
+
                 </div>
               )}
 
@@ -193,17 +225,26 @@ export default function RouletteModal({
                     Seu prêmio
                   </span>
 
-                  <h3 className="mt-3 text-3xl font-black leading-tight tracking-[-0.04em] text-[#FFFFFF] sm:text-4xl">
+                  <div className="roulette-result-image-card mt-4">
+                    <img
+                      src={revealedPrizeImage}
+                      alt={revealedPrize.nome}
+                      loading="lazy"
+                    />
+
+                    <div className="roulette-result-number">
+                      Número sorteado: {getPrizeLabel(revealedPrizeIndex >= 0 ? revealedPrizeIndex : prizeNumber)}
+                    </div>
+                  </div>
+
+                  <h3 className="mt-5 text-3xl font-black leading-tight tracking-[-0.04em] text-[#FFFFFF] sm:text-4xl">
                     {revealedPrize.nome}
                   </h3>
 
                   <p className="mt-4 text-sm leading-7 text-[#FFFFFF]/66 sm:text-base">
-                    {revealedPrize.entrega || "Nossa equipe validará as informações e entrará em contato para confirmar o envio do prêmio."}
+                    {revealedPrize.entrega ||
+                      "Nossa equipe validará as informações e entrará em contato para confirmar o envio do prêmio."}
                   </p>
-
-                  <div className="mt-4 rounded-2xl border border-[#FFFFFF]/10 bg-[#000000]/35 p-4 text-sm leading-7 text-[#FFFFFF]/68">
-                    Antes do envio, a equipe irá validar os dados do cadastro e o comprovante da compra.
-                  </div>
 
                   <div className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
                     <a
@@ -219,6 +260,63 @@ export default function RouletteModal({
               )}
             </aside>
           </div>
+
+          <section className="roulette-prize-consult">
+            <div className="roulette-prize-consult-header">
+              <div>
+                <span className="text-[0.68rem] font-black uppercase tracking-[0.2em] text-[#89A6EA]">
+                  Prêmios disponíveis
+                </span>
+
+                <h3 className="mt-3 text-2xl font-black tracking-[-0.03em] text-[#FFFFFF]">
+                  Confira a probabilidade de cada prêmio e acompanhe qual item foi sorteado.
+                </h3>
+              </div>
+
+              {revealedPrize && (
+                <div className="roulette-winner-pill">
+                  Você ganhou o prêmio {getPrizeLabel(revealedPrizeIndex >= 0 ? revealedPrizeIndex : prizeNumber)}
+                </div>
+              )}
+            </div>
+
+            <div className="roulette-prize-list roulette-prize-list-bottom mt-5">
+              {prizes.map((prize, index) => {
+                const isPending = pendingPrize?.id === prize.id && !revealedPrize;
+                const isWinner = revealedPrize?.id === prize.id;
+
+                return (
+                  <div
+                    key={prize.id || index}
+                    className={[
+                      "roulette-prize-item",
+                      isPending ? "is-pending" : "",
+                      isWinner ? "is-winner" : ""
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                  >
+                    <span>{getPrizeLabel(index)}</span>
+
+                    <div>
+                      <strong>{getPrizeName(prize, index)}</strong>
+                      <small>
+                        {Number(prize.probabilidade || 0).toFixed(0)}% de chance
+                      </small>
+
+                      {isWinner && (
+                        <em className="roulette-prize-status">Prêmio sorteado</em>
+                      )}
+
+                      {isPending && (
+                        <em className="roulette-prize-status">Resultado em processamento</em>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
         </div>
       </div>
     </Modal>
