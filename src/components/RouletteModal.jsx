@@ -32,8 +32,10 @@ export default function RouletteModal({
     }));
   }, [prizes]);
 
+  const spinDisabled = loadingSpin || mustSpin || pendingPrize || revealedPrize || wheelData.length === 0;
+
   async function handleSpin() {
-    if (!participant?.id || loadingSpin || mustSpin || pendingPrize || revealedPrize) return;
+    if (!participant?.id || spinDisabled) return;
 
     setLoadingSpin(true);
     setMessage("");
@@ -72,10 +74,6 @@ export default function RouletteModal({
             <h2 className="mt-5 max-w-3xl text-2xl font-black leading-tight tracking-[-0.04em] text-[#FFFFFF] sm:text-4xl lg:text-5xl">
               {participant?.nome ? `${participant.nome}, gire para revelar seu prêmio.` : "Gire para revelar seu prêmio."}
             </h2>
-
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#FFFFFF]/64 sm:text-base">
-              O resultado é definido pelo backend, registrado no Supabase e exibido somente após a roleta terminar de girar.
-            </p>
           </div>
 
           <div className="mt-7 grid gap-6 xl:grid-cols-[minmax(0,1fr)_390px] xl:items-stretch">
@@ -119,11 +117,17 @@ export default function RouletteModal({
                   )}
                 </div>
 
-                <div className="roulette-center-badge">
-                  <span>Gire</span>
-                  <strong>&amp;</strong>
-                  <span>Brinde</span>
-                </div>
+                <button
+                  type="button"
+                  onClick={handleSpin}
+                  disabled={spinDisabled}
+                  className="roulette-center-badge cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
+                  aria-label="Girar roleta"
+                >
+                  <span>{loadingSpin ? "Preparando" : mustSpin ? "Girando" : "Gire"}</span>
+                  <strong>{loadingSpin || mustSpin ? "..." : "&"}</strong>
+                  <span>{loadingSpin ? "aguarde" : mustSpin ? "boa sorte" : "Brinde"}</span>
+                </button>
               </div>
             </section>
 
@@ -135,11 +139,8 @@ export default function RouletteModal({
                       Prêmios disponíveis
                     </span>
                     <h3 className="mt-3 text-2xl font-black tracking-[-0.03em] text-[#FFFFFF]">
-                      Confira a legenda da roleta
+                      Confira a probabilidade de cada prêmio e gire a roleta para tentar a sorte.
                     </h3>
-                    <p className="mt-3 text-sm leading-7 text-[#FFFFFF]/60">
-                      Os números aparecem dentro dos gomos para preservar o visual. O nome completo de cada prêmio fica listado abaixo.
-                    </p>
                   </div>
 
                   <div className="roulette-prize-list mt-5">
@@ -162,7 +163,7 @@ export default function RouletteModal({
 
                   <Button
                     onClick={handleSpin}
-                    disabled={loadingSpin || mustSpin || wheelData.length === 0}
+                    disabled={loadingSpin || mustSpin || wheelData.length === 0 || pendingPrize || revealedPrize}
                     className="mt-6 w-full"
                   >
                     {loadingSpin ? "Preparando..." : "Girar agora"}
