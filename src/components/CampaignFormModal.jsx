@@ -145,9 +145,6 @@ export default function CampaignFormModal({
             <p className="mt-3 text-sm leading-7 text-[#334155]">
               Seus dados e o comprovante da compra serão analisados pela equipe antes da confirmação do prêmio.
             </p>
-            <p className="mt-3 text-sm leading-7 text-[#334155]">
-              Seus dados e o comprovante da compra serão analisados pela equipe antes da confirmação do prêmio.
-            </p>
           </div>
 
           <div className="mt-7 grid gap-4">

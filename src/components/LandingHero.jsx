@@ -5,9 +5,9 @@ export default function LandingHero({ onOpenForm, onOpenLgpd }) {
     <section className="relative isolate min-h-screen overflow-hidden bg-[#000000]">
       <div className="absolute inset-0 -z-20 bg-[#000000]" />
       <div
-        className="absolute inset-0 -z-10 bg-cover bg-center opacity-85"
+        className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/hero/hero-dia-dos-pais.jpeg')"
+          backgroundImage: "url('/hero/hero-dia-dos-pais.webp')"
         }}
       />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.78)_38%,rgba(0,0,0,0.55)_100%)]" />
