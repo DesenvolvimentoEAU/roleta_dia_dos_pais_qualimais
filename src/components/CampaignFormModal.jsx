@@ -116,15 +116,13 @@ export default function CampaignFormModal({
               </span>
 
               <h2 className="mt-8 text-4xl font-black leading-tight tracking-[-0.04em] text-[#FFFFFF]">
-                Sua chance começa aqui.
+                Você está a um passo de ganhar o seu prêmio.
               </h2>
 
               <p className="mt-5 leading-7 text-[#FFFFFF]/78">
                 Preencha seus dados, envie o comprovante da compra e libere a roleta. Todas as informações serão validadas antes do envio dos prêmios.
               </p>
-              <p className="mt-5 leading-7 text-[#FFFFFF]/78">
-                <strong>Promoção válida para restaurantes participantes na compra de 1 garrafa Expresso Bodeguero, do dia 01/08/2026 a 09/08/2026. Participação somente para maiores de 18 anos, válido 1 por cpf. Se beber, não dirija.</strong>
-              </p>
+              
             </div>
 
             <div className="rounded-[2rem] border border-[#FFFFFF]/12 bg-[#FFFFFF]/8 p-5 backdrop-blur-xl">

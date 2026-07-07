@@ -325,6 +325,14 @@ input {
   animation: resultIn 0.55s ease both;
 }
 
+p.textoPromocao {
+    text-align: center;
+}
+
+.validadePromocao {
+    margin: 32px 0 32px 0;
+}
+
 @media (max-width: 1279px) {
   .roulette-info-card {
     text-align: center;

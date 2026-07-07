@@ -18,7 +18,7 @@ export default function HowItWorks({ onOpenForm }) {
     {
       number: "04",
       title: "Aguarde a conferência",
-      text: "A equipe validará os dados e o comprovante antes de confirmar o envio do prêmio. E enviaremos mensagem por e-mail ou WhatsApp para informar o status."
+      text: "A equipe validará os dados e o comprovante antes de confirmar o envio do prêmio. Enviaremos mensagem por e-mail"
     }
   ];
 
