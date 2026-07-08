@@ -27,6 +27,18 @@ export default function LgpdModal({ open, onClose }) {
           </p>
         </div>
 
+        <h2 className="mt-4 pr-10 text-4xl font-black tracking-[-0.04em]">
+          Como participar da campanha
+        </h2>
+
+        <div className="mt-6 space-y-4 leading-8 text-[#334155]">
+          <p>
+            Para participar da campanha, é necessário realizar a compra de uma garrafa de <b><u>Expreso Bodeguero</u></b> em um dos <b><u>restaurantes participantes</u></b>, preencher o formulário de participação e enviar o comprovante da compra.
+          </p>
+
+        </div>
+        
+
         <Button onClick={onClose} className="mt-8">
           Entendi
         </Button>
